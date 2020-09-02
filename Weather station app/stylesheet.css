@@ -1,21 +1,38 @@
 .head1 {
     font-family: Arial, Helvetica, sans-serif;
-    color: blue;
+    color: red;
 }
 
-.container {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-content: center;
+.img1 {
+    min-width: 100px;
+    min-height: 100px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: auto;
 }
 
-.container > div {
-    align-self: center;
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto;
+    background-color: #b6b6b6f3;
+    padding: 10px;
+}
+  .grid-item {
+    background-color: rgba(145, 145, 145, 0.8);
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    font-size: 30px;
+    text-align: center;
 }
 
-.button {
-    width: 200px;
-    background-color: blueviolet;
+.today > p {
+    padding-left: 20px;
+}
+
+.p1 {
+    text-align: left;
+    font-size: 20px;
+}
+.p2 {
+    text-align: left;
+    font-size: 20px;
 }

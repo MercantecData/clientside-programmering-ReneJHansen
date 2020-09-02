@@ -1,31 +1,65 @@
 <html>
 
 <head>
-    <!--head usually contains meta data like import links to files -->
+    <!-- head usually contains meta data like import links to files -->
     <!-- both are like "using" in C# referring to a file and using its content -->
     <link rel="stylesheet" type="text/css" href="stylesheet.css">
     <script type="text/javascript" src="scripts.js"></script>
+
+    <!-- makes the site update automaticly -->
+    <meta http-equiv="refresh" content="30">
 </head>
 
-
-<body onload="get_weather('p1')">
-    <div class="container">
-        <div>
-            <!-- header with class for css and id for button identification -->
-            <h1 class="head1" id="header1">Viborg Vejr</h1>
+<body onload="get_weather()">
+    <h1 class="city">Weather in: Viborg</h1>
+    <div class="grid-container">
+        <div class="grid-item">
+            <div class="today">
+                <h3>Today</h3>
+                <p id="img1" class="img1"></p>
+                <p class="p1" id="temp1.1"></p>
+                <p class="p2" id="temp1.2"></p>
+                <p class="p1" id="wind1"></p>
+            </div>
+        </div>
+        <div class="grid-item">
+            <div class="today">
+                <h3>Tomorrow</h3>
+                    <p id="img2" class="img1"></p>
+                    <p class="p1" id="temp2.1"></p>
+                    <p class="p2" id="temp2.2"></p>
+                    <p class="p1" id="wind2"></p>
+            </div>
+        </div>
+        <div class="grid-item">
+            <div class="today">
+                <h3>In 2 days</h3>
+                <p id="img3" class="img1"></p>
+                <p class="p1" id="temp3.1"></p>
+                <p class="p1" id="temp3.2"></p>
+                <p class="p1" id="wind3"></p>
+            </div>
+        </div>
+        <div class="grid-item">
+            <div class="today">
+                <h3>In 3 days</h3>
+                <p id="img4" class="img1"></p>
+                <p class="p1" id="temp4.1"></p>
+                <p class="p1" id="temp4.2"></p>
+                <p class="p1" id="wind4"></p>
+            </div>
+        </div>
+        <div class="grid-item">
+            <div class="today">
+                <h3>In 4 days</h3>
+                <p id="img5" class="img1"></p>
+                <p class="p1" id="temp5.1"></p>
+                <p class="p1" id="temp5.2"></p>
+                <p class="p1" id="wind5"></p>
+            </div>
         </div>
 
-        <div>
-            <!-- paragraph with id set -->
-            <p class="p1" id="p1">p1 here</p>
-        </div>
-
-        <div>
-            <!-- onclick uses ID from paragraph -->
-            <button class="button">Useless button</button>
-        </div>
     </div>
-
 </body>
 
 </html>
