@@ -4,6 +4,7 @@
     <!-- head usually contains meta data like import links to files -->
     <!-- both are like "using" in C# referring to a file and using its content -->
     <link rel="stylesheet" type="text/css" href="stylesheet.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript" src="scripts.js"></script>
 </head>
 
@@ -11,20 +12,19 @@
 
 <body onload="get_location()">
     <div class="5dayforecast" id="5dayforecast">
-        <div class="grid-container">
-            <div class="search">
-                <form id="search_form">
-                    <label for="city_search">
-                        <h3>Enter location</h3>
-                    </label>
-                    <input type="text" id="city_search" name="city_search">
-                    <input type="submit" value="Search">
-                </form>
-            </div>
-            <h1 class="header" id="this_city"></h1>
+        
+        <div class="search">
+            <form id="search_form">
+                <label for="city_search">
+                    <h3>Enter location</h3>
+                </label>
+                <input type="text" id="city_search" name="city_search">
+                <input type="submit" value="Search" class="submit" id="submit">
+            </form>
         </div>
-
-        <div class="forecast">
+        
+        <h1 class="header" id="this_city"></h1>
+        <div class="forecast" id="forecast">
             <div class="grid-container">
                 <div class="grid-item">
                     <div class="day">
@@ -73,6 +73,7 @@
                 </div>
             </div>
         </div>
+        <div class="new_search"></div>
     </div>
 </body>
 
