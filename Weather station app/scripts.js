@@ -63,7 +63,16 @@ function insertIntoForecast() {
         document.getElementById("temp" + (x + 0.1)).innerHTML = "Temp min: " + parseFloat(weatherArray[index - 1].daily[x].temp.min - 273.15).toFixed(1) + " " + '&#8451;';
         document.getElementById("temp" + (x + 0.2)).innerHTML = "Temp max: " + parseFloat(weatherArray[index - 1].daily[x].temp.max - 273.15).toFixed(1) + " " + '&#8451;';
         document.getElementById("img" + x).style.backgroundImage = `url("http://openweathermap.org/img/wn/${iconID}@2x.png")`;
-        document.getElementById("wind" + x).innerHTML = "Wind: " + weatherArray[index - 1].daily[x].wind_speed + "m/s";
+        document.getElementById("wind" + x).innerText = "Wind: " + weatherArray[index - 1].daily[x].wind_speed + "m/s";
+
+        // Creates direction arrow for wind and transform based on wind_deg from JSON
+        var windArrow = document.createElement("img");
+        windArrow.setAttribute("id", `arrow${x}`);
+        windArrow.src = 'arrow.png';
+        windArrow.style.maxWidth = "10%";
+        windArrow.style.transform = "rotate(" + (weatherArray[index - 1].daily[x].wind_deg) + "deg)";
+        
+        document.getElementById("wind" + x).append(windArrow);
     };
 };
 
