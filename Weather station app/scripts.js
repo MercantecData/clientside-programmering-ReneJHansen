@@ -1,6 +1,4 @@
 var id = "appid=6f0c733e0ea1136f9299db14742c5b85";
-var lon;
-var lat;
 
 let days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
@@ -17,6 +15,9 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
+// Gets the weather of a specific city
+// This function will get the latitude and longitude from the JSON and pass it to get_weather()
+// which then provides a 7 day forecast
 function get_location(city = "Viborg") {
     fetch("https://api.openweathermap.org/data/2.5/weather?q=" + city + "&" + id)
         .then(data => data.json()).then(resp => {
@@ -24,8 +25,8 @@ function get_location(city = "Viborg") {
             // Sets coords of the input city with the coords from the JSON
             console.log(resp.coord.lat);
             console.log(resp.coord.lon);
-            lon = resp.coord.lon;
-            lat = resp.coord.lat;
+            var lon = resp.coord.lon;
+            var lat = resp.coord.lat;
 
             document.getElementById('this_city').innerHTML = city;
 
@@ -38,6 +39,9 @@ function get_weather(lon, lat) {
     fetch("https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&" + id)
         .then(data => data.json()).then(resp => {
 
+            // Thought process on this was:
+            // add the search JSON to an array and loop through
+            // however the jquery did this without me specifying it
             weatherArray.push(resp);
             index++;
 
@@ -45,10 +49,9 @@ function get_weather(lon, lat) {
         });
 };
 
+// Adds values into the html <p> of the forecast
 function insertIntoForecast() {
 
-    // Creates an array of days used for headers in 5 days view
-    // .getDate() outputs your current day as a number ie: Monday=1 or Thursday=4
     var today = getToday();
 
     for (let x = 1; x < 6; x++) {
@@ -64,24 +67,22 @@ function insertIntoForecast() {
     };
 };
 
+// .getDate() outputs your current day as a number ie: Monday=1 or Thursday=4
 function getToday() {
     var date = new Date();
     var new_date = date.getDate();
     return new_date;
 };
 
-function addNewForecastOnSearch() {
-
-}
-
+// makes a clone of the 5 day forecast and place it after the old one
 $(document).ready(function () {
     $(".submit").click(function () {
-        $(".forecast").clone().prop({ id: "new_forecast", class: "forecast"}).insertAfter(".new_search");
-        $(".header").clone().prop({ id: "new_header", class: "header"}).insertAfter(".new_search");
+        $(".forecast").clone().prop({ id: "new_forecast", class: "forecast" }).insertAfter(".new_search");
+        $(".header").clone().prop({ id: "new_header", class: "header" }).insertAfter(".new_search");
     });
 });
 
-$(document).ready(() => addNewForecastOnSearch());
+
 
 /*  NOTER FRA UNDERVISNING
 function widget(data) {
