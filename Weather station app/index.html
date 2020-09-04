@@ -5,60 +5,74 @@
     <!-- both are like "using" in C# referring to a file and using its content -->
     <link rel="stylesheet" type="text/css" href="stylesheet.css">
     <script type="text/javascript" src="scripts.js"></script>
-
-    <!-- makes the site update automaticly -->
-    <meta http-equiv="refresh" content="30">
 </head>
 
-<body onload="get_weather()">
-    <h1 class="city">Weather in: Viborg</h1>
-    <div class="grid-container">
-        <div class="grid-item">
-            <div class="today">
-                <h3>Today</h3>
-                <p id="img1" class="img1"></p>
-                <p class="p1" id="temp1.1"></p>
-                <p class="p2" id="temp1.2"></p>
-                <p class="p1" id="wind1"></p>
+<!-- When first loaded this calls API call with default value of "Viborg"-->
+
+<body onload="get_location()">
+    <div class="5dayforecast" id="5dayforecast">
+        <div class="grid-container">
+            <div class="search">
+                <form id="search_form">
+                    <label for="city_search">
+                        <h3>Enter location</h3>
+                    </label>
+                    <input type="text" id="city_search" name="city_search">
+                    <input type="submit" value="Search">
+                </form>
             </div>
-        </div>
-        <div class="grid-item">
-            <div class="today">
-                <h3>Tomorrow</h3>
-                    <p id="img2" class="img1"></p>
-                    <p class="p1" id="temp2.1"></p>
-                    <p class="p2" id="temp2.2"></p>
-                    <p class="p1" id="wind2"></p>
-            </div>
-        </div>
-        <div class="grid-item">
-            <div class="today">
-                <h3>In 2 days</h3>
-                <p id="img3" class="img1"></p>
-                <p class="p1" id="temp3.1"></p>
-                <p class="p1" id="temp3.2"></p>
-                <p class="p1" id="wind3"></p>
-            </div>
-        </div>
-        <div class="grid-item">
-            <div class="today">
-                <h3>In 3 days</h3>
-                <p id="img4" class="img1"></p>
-                <p class="p1" id="temp4.1"></p>
-                <p class="p1" id="temp4.2"></p>
-                <p class="p1" id="wind4"></p>
-            </div>
-        </div>
-        <div class="grid-item">
-            <div class="today">
-                <h3>In 4 days</h3>
-                <p id="img5" class="img1"></p>
-                <p class="p1" id="temp5.1"></p>
-                <p class="p1" id="temp5.2"></p>
-                <p class="p1" id="wind5"></p>
-            </div>
+            <h1 class="header" id="this_city"></h1>
         </div>
 
+        <div class="forecast">
+            <div class="grid-container">
+                <div class="grid-item">
+                    <div class="day">
+                        <h3 id="day1">Today</h3>
+                        <p id="img1" class="img1"></p>
+                        <p class="p1" id="temp1.1"></p>
+                        <p class="p2" id="temp1.2"></p>
+                        <p class="p1" id="wind1"></p>
+                    </div>
+                </div>
+                <div class="grid-item">
+                    <div class="day">
+                        <h3 id="day2">Tomorrow</h3>
+                        <p id="img2" class="img1"></p>
+                        <p class="p1" id="temp2.1"></p>
+                        <p class="p2" id="temp2.2"></p>
+                        <p class="p1" id="wind2"></p>
+                    </div>
+                </div>
+                <div class="grid-item">
+                    <div class="day">
+                        <h3 id="day3">In 2 days</h3>
+                        <p id="img3" class="img1"></p>
+                        <p class="p1" id="temp3.1"></p>
+                        <p class="p1" id="temp3.2"></p>
+                        <p class="p1" id="wind3"></p>
+                    </div>
+                </div>
+                <div class="grid-item">
+                    <div class="day">
+                        <h3 id="day4">In 3 days</h3>
+                        <p id="img4" class="img1"></p>
+                        <p class="p1" id="temp4.1"></p>
+                        <p class="p1" id="temp4.2"></p>
+                        <p class="p1" id="wind4"></p>
+                    </div>
+                </div>
+                <div class="grid-item">
+                    <div class="day">
+                        <h3 id="day5">In 4 days</h3>
+                        <p id="img5" class="img1"></p>
+                        <p class="p1" id="temp5.1"></p>
+                        <p class="p1" id="temp5.2"></p>
+                        <p class="p1" id="wind5"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 
