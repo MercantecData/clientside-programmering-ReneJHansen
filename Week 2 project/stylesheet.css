@@ -95,7 +95,7 @@ body {
 }
 
 .grid-container-level > .level-wrap {
-    width: 50%;
+    width: 70%;
 
 }
 
@@ -104,7 +104,7 @@ body {
     border-radius: 5px;
     list-style-position: inside;
     text-align: left;
-    transform: translate(50%);
+    transform: translate(20%);
     margin: auto;
     background-color: rgb(105, 105, 105);
 }
@@ -112,4 +112,8 @@ body {
 .levels {
     padding: 10px;
     font-size: 14px;
+}
+
+.featureDesc {
+    list-style-type: none;
 }

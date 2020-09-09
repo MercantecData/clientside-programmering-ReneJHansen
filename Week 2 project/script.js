@@ -102,6 +102,9 @@ function showFeature(url, i) {
         var container = document.getElementById(`profBonus${i}`);
         var features = document.createElement("li");
         features.innerHTML = res.name;
+        for (var j = 0; j < res.desc.length; j++) {
+            features.innerHTML += "<ul class='featureDesc'><li>" + res.desc[j] + "</li></ul>"
+        }
 
         container.appendChild(features);
     })
