@@ -27,7 +27,7 @@ function listHelper(res) {
         listItem.setAttribute("id", `class${i}`);
         listItem.style.display = "inline-block";
         listItem.style.margin = "0px 0px 0px 2px";
-        listItem.innerHTML = `<button id="class${i}" onClick="chosenClass('${res.results[i].url}')">` + text;
+        listItem.innerHTML = `<button id="class${i}" onClick="chosenClass('${res.results[i].url}'); clearLists()">` + text;
 
         listItem.appendChild(br);
 
@@ -43,6 +43,8 @@ function chosenClass(pickedClass) {
 
     fetch(url).then(res => res.json()).then(res => {
 
+        baseStats(res);
+
         if (url != "https://www.dnd5eapi.co/api/classes/monk") {
             proficienciyBlock(res, url);
         }
@@ -52,23 +54,47 @@ function chosenClass(pickedClass) {
         console.log(res);
         document.getElementById("className").innerHTML = res.name;
     })
+}
 
+function baseStats(pickedClass) {
+
+    var header, healthDie, savingThrows;
+
+    var stats = document.getElementById("stats");
+
+
+    // Generates the header "base stats"
+    header = document.createElement("h2");
+    header.innerHTML = "Base Stats";
+    stats.appendChild(header);
+
+    // Generates list of hit die and saving throws
+    healthDie = document.createElement("li");
+    healthDie.innerHTML = "Hit Die: d" + pickedClass.hit_die;
+    savingThrows = document.createElement("li");
+    savingThrows.innerHTML = "Saving Throws: ";
+
+    for (var i = 0; i < pickedClass.saving_throws.length; i++) {
+
+        savingThrows.innerHTML += pickedClass.saving_throws[i].name + " ";
+
+        stats.appendChild(savingThrows);
+    }
+    stats.appendChild(healthDie);
 }
 
 
 function proficienciyBlock(pickedClass) {
 
-    var skill = document.getElementById("skills");
-    var tools = document.getElementById("tools");
-
     var li, header;
 
-    clearLists(skill, tools);
+    var skills = document.getElementById("skills");
+
 
     // Generates the header "proficiencies"
     header = document.createElement("h2");
     header.innerHTML = "Proficiencies: (" + pickedClass.proficiency_choices[0].choose + ")";
-    skill.appendChild(header);
+    skills.appendChild(header);
 
     // Generates list of skill proficiencies
     for (var i = 0; i < pickedClass.proficiency_choices[0].from.length; i++) {
@@ -78,7 +104,7 @@ function proficienciyBlock(pickedClass) {
         // All proficiencies comes with "skill: " so i use substr(7) to trim that off
         li.innerHTML = pickedClass.proficiency_choices[0].from[i].name.substr(7);
 
-        skill.appendChild(li);
+        skills.appendChild(li);
     }
 }
 
@@ -86,16 +112,16 @@ function proficienciyBlock(pickedClass) {
 function monkProfBlock(pickedClass) {
 
     var container = document.getElementById("grid-container");
-    var skill = document.getElementById("skills");
-    var tools = document.getElementById("tools");
     var li, header, pick, tools;
 
-    clearLists(skill, tools);
+    var tools = document.getElementById("tools");
+    var skills = document.getElementById("skills");
+
 
     // Generates the header "proficiencies"
     header = document.createElement("h2");
     header.innerHTML = "Proficiencies: (" + pickedClass.proficiency_choices[2].choose + ")";
-    skill.appendChild(header);
+    skills.appendChild(header);
 
     // Generates list of skill proficiencies
     for (var i = 0; i < pickedClass.proficiency_choices[2].from.length; i++) {
@@ -103,9 +129,8 @@ function monkProfBlock(pickedClass) {
         li = document.createElement("li");
         li.innerHTML = pickedClass.proficiency_choices[2].from[i].name.substr(7);
 
-        skill.appendChild(li);
+        skills.appendChild(li);
     }
-    container.appendChild(skill);
 
     // Generates the header "tools"
     header = document.createElement("h2");
@@ -119,17 +144,24 @@ function monkProfBlock(pickedClass) {
 
         tools.appendChild(li);
     }
-    container.appendChild(tools);
 }
 
 // Clears the lists for next class search
-function clearLists(skill, tools) {
+function clearLists() {
 
-    while (skill.firstChild) {
-        skill.removeChild(skill.firstChild);
+    var stats = document.getElementById("stats");
+    var skills = document.getElementById("skills");
+    var tools = document.getElementById("tools");
+
+    while (stats.firstChild) {
+        stats.removeChild(stats.firstChild);
+    };
+
+    while (skills.firstChild) {
+        skills.removeChild(skills.firstChild);
     };
 
     while (tools.firstChild) {
         tools.removeChild(tools.firstChild);
-    }
+    };
 }
